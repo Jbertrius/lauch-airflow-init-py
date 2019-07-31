@@ -43,6 +43,8 @@ def main():
                         help="The url of a resource sitting behind identity-aware proxy.")
     parser.add_argument("--iapClientId", dest='iapClientId', required=True,
                         help="The Client ID of the IAP OAuth Client.")
+    parser.add_argument("--serviceAccount", dest='serviceAccount', required=True,
+                        help="")
     parser.add_argument("--raw_path", dest='raw_path', required=True, help="GCS path to raw files.")
 
     args = parser.parse_args()
@@ -78,7 +80,7 @@ def main():
         'conf': json.dumps(conf),
     }
 
-    return iap.make_iap_request(args.url, args.iapClientId, method='POST',
+    return iap.make_iap_request(args.url, args.iapClientId, args.serviceAccount, method='POST',
                                 data=json.dumps(payload))
 
 

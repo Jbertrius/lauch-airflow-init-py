@@ -31,7 +31,7 @@ IAM_SCOPE = 'https://www.googleapis.com/auth/iam'
 OAUTH_TOKEN_URI = 'https://www.googleapis.com/oauth2/v4/token'
 
 
-def make_iap_request(url, client_id, method='GET', **kwargs):
+def make_iap_request(url, client_id, email, method='GET', **kwargs):
     """Makes a request to an application protected by Identity-Aware Proxy.
 
     Args:
@@ -66,7 +66,7 @@ def make_iap_request(url, client_id, method='GET', **kwargs):
     bootstrap_credentials.refresh(Request())
 
     signer_email = bootstrap_credentials.service_account_email
-    signer_email = 'sa-intk-mydata-cf-yrfr-dev@mydata-collectstore-4522a6.iam.gserviceaccount.com'
+    signer_email = email
 
     if isinstance(bootstrap_credentials,
                   google.auth.compute_engine.credentials.Credentials):
