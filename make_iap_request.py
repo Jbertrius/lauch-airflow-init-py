@@ -66,8 +66,8 @@ def make_iap_request(url, client_id, method='GET', **kwargs):
     bootstrap_credentials.refresh(Request())
 
     signer_email = bootstrap_credentials.service_account_email
-    print 'EMAIL' + signer_email
-    logging.info(signer_email)
+    signer_email = 'sa-intk-mydata-cf-yrfr-dev@mydata-collectstore-4522a6.iam.gserviceaccount.com'
+
     if isinstance(bootstrap_credentials,
                   google.auth.compute_engine.credentials.Credentials):
         # Since the Compute Engine metadata service doesn't expose the service
@@ -83,6 +83,7 @@ def make_iap_request(url, client_id, method='GET', **kwargs):
         # 2. The VM's default service account needs the "Service Account Actor"
         #    role. This can be found under the "Project" category in Cloud
         #    Console, or roles/iam.serviceAccountActor in gcloud.
+
         signer = google.auth.iam.Signer(
             Request(), bootstrap_credentials, signer_email)
     else:
