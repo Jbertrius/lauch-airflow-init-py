@@ -52,8 +52,7 @@ def make_iap_request(url, client_id, method='GET', **kwargs):
 
     # Figure out what environment we're running in and get some preliminary
     # information about the service account.
-    bootstrap_credentials, _ = google.auth.default(
-        scopes=[IAM_SCOPE])
+    bootstrap_credentials, _ = google.auth.default(scopes=[IAM_SCOPE])
     if isinstance(bootstrap_credentials,
                   google.oauth2.credentials.Credentials):
         raise Exception('make_iap_request is only supported for service '
@@ -67,6 +66,8 @@ def make_iap_request(url, client_id, method='GET', **kwargs):
     bootstrap_credentials.refresh(Request())
 
     signer_email = bootstrap_credentials.service_account_email
+    print 'EMAIL' + signer_email
+    logging.info(signer_email)
     if isinstance(bootstrap_credentials,
                   google.auth.compute_engine.credentials.Credentials):
         # Since the Compute Engine metadata service doesn't expose the service
