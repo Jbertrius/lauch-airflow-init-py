@@ -24,6 +24,7 @@ import google.oauth2.credentials
 import google.oauth2.service_account
 import requests
 import requests_toolbelt.adapters.appengine
+import logging
 
 
 IAM_SCOPE = 'https://www.googleapis.com/auth/iam'
@@ -140,6 +141,8 @@ def get_google_open_id_connect_token(service_account_credentials):
     shows how to get an OAuth2 access token; this code is using a
     modified version of it to get an OpenID Connect token.)
     """
+
+    logging.info(service_account_credentials.service_account_email)
 
     service_account_jwt = (
         service_account_credentials._make_authorization_grant_assertion())
