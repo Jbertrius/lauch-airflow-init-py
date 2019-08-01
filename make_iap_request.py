@@ -66,7 +66,6 @@ def make_iap_request(url, client_id, email, method='GET', **kwargs):
     bootstrap_credentials.refresh(Request())
 
     signer_email = bootstrap_credentials.service_account_email
-    signer_email = email
 
     if isinstance(bootstrap_credentials,
                   google.auth.compute_engine.credentials.Credentials):
@@ -143,8 +142,6 @@ def get_google_open_id_connect_token(service_account_credentials):
     shows how to get an OAuth2 access token; this code is using a
     modified version of it to get an OpenID Connect token.)
     """
-
-    logging.info(service_account_credentials.service_account_email)
 
     service_account_jwt = (
         service_account_credentials._make_authorization_grant_assertion())
